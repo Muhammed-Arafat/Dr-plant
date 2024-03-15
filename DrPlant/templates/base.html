@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta thhp-equiv="x-UA-compatible" content="IE=edge,chrom=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'CSS/nav.css' %}">
+
+  <!--for palnt-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+    <link href="{% static 'CSS/plant_images.css' %}" rel="stylesheet">
+  <!--end plant-->
+  
+  <!--for news-->
+  <link rel="stylesheet" href="{% static 'CSS/aa.css' %}">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{% static 'JS/a.js' %}"></script>
+  <!--end news-->
+
+  <!--for main-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <!--end main-->
+  <!--for about-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+  <!--end about-->
+</head>
+
+<body >
+  <div class="header" style="z-index: 20;">
+    <div class="logo">
+      <img src="{% static 'images/nav/343.png' %}" alt="">
+      <p class="navfont">DR.PLANT</p>
+    </div>
+    <div class="nav" >
+    <ul>
+      <li><a href="base.html" onclick="removeSuffix()" > Main</a></li>
+      <li><a href="news">News</a></li>
+      <li><a href="plant_disease">Plant disease diagnosis</a></li>
+      <li><a href="about_us">About us</a></li>
+
+    </ul>
+  </div>
+  
+  </div>
+  <!--for base-->
+  <div class="conter" >
+    <!--end base-->
+    <!--for plant-->
+    {% block content %}
+    {% endblock content %}
+    
+  </div>
+  <script>
+    function onCountryChange() {
+        var countrySelect = document.getElementById("id_country");
+        var citySelect = document.getElementById("id_city");
+        var selectedCountry = countrySelect.options[countrySelect.selectedIndex].value;
+
+        citySelect.disabled = false;
+        for (var i = 0; i < citySelect.options.length; i++) {
+            var cityOption = citySelect.options[i];
+
+            if (cityOption.getAttribute("data-country") === selectedCountry) {
+                cityOption.classList.remove("hidden");
+            } else {
+                cityOption.classList.add("hidden");
+            }
+        }
+    }
+  </script>
+  <!--end plant-->
+
+  <!--for news-->
+  <script>
+    function onCountryChange() {
+        var countrySelect = document.getElementById("id_country");
+        var citySelect = document.getElementById("id_city");
+        var selectedCountry = countrySelect.options[countrySelect.selectedIndex].value;
+
+        citySelect.disabled = false;
+        for (var i = 0; i < citySelect.options.length; i++) {
+            var cityOption = citySelect.options[i];
+
+            if (cityOption.getAttribute("data-country") === selectedCountry) {
+                cityOption.classList.remove("hidden");
+            } else {
+                cityOption.classList.add("hidden");
+            }
+        }
+    }
+
+    // Add an event listener to the city select element to handle city selection
+
+</script>
+  <!--end news-->
+</body>
+
+</html>
+
+

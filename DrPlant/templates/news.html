@@ -1,0 +1,224 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+
+
+
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+    .one_img{
+      border:1px solid black;
+      width:256px;
+      height:256px;
+    }
+    .myfieldclass{
+      color:red;
+
+    }
+</style>
+
+
+<script>
+    function onCountryChange() {
+        var countrySelect = document.getElementById("id_country");
+        var citySelect = document.getElementById("id_city");
+        var selectedCountry = countrySelect.options[countrySelect.selectedIndex].value;
+
+        citySelect.disabled = false;
+        for (var i = 0; i < citySelect.options.length; i++) {
+            var cityOption = citySelect.options[i];
+
+            if (cityOption.getAttribute("data-country") === selectedCountry) {
+                cityOption.classList.remove("hidden");
+            } else {
+                cityOption.classList.add("hidden");
+            }
+        }
+    }
+</script>
+
+<div class="body1">
+<div class="head1">
+    <h1>News page</h1>
+    <h5>its show images and regions with its diseases and solves</h5>
+</div>
+<div class="form1">
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="">Country:</label>
+    <select id="id_country" name="country" onchange="onCountryChange()">
+        <option value="">Select a country</option>
+        {% for country in countries %}
+            <option value="{{ country.pk }}">{{ country.country_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="">City:</label>
+    <select id="id_city" name="city" disabled>
+        <option value="">Select a city</option>
+        {% for city in cities %}
+            <option data-country="{{ city.country.pk }}" class="hidden" value="{{ city.pk }}">{{ city.city_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="">Plant:</label>
+    <select id="id_plant" name="plant">
+        <option value="">Select plant</option>
+        {% for plant in plants %}
+            <option value="{{ plant.plants_name }}">{{ plant.plants_name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Search</button>
+</form>
+<h5>Search results for diseases in your area</h5>
+</div>
+<div class="all_news">
+{% for new in news %}
+
+    <div class="one_news">
+        <div class="image5">
+            <img class="one_img" src="{{ new.img.url }}" alt="">
+            <p>{{new.time}}</p>
+        </div>
+        <div class="overlay">
+            <div class="overlay-content">
+                <div class="image2">
+                    <img class="overlay-image" src="{{ new.img.url }}" alt="">
+                </div>
+                <p>{{new.time}}</p>
+
+                <p><label class ="labels" >region : </label> <label class="new_country">{{new.country}}</label><label> / </label><label class="new_city">{{new.city}}</label> </p>
+                <p><label class ="labels" >plant : </label> {{new.plant}}</p>
+                <p><label class ="labels" >disease : </label> {{new.case.disease}}</p>
+                <p><label class ="labels" >explain : </label> {{new.case.explain}}</p>
+                <p><label class ="labels" >treatment : </label> {{new.case.treatment}}</p>
+                <p><label class ="labels" >protection : </label> {{new.case.protection}}</p>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+</div>
+</div>
+{% endblock content %}
+
+  <!--<style media="screen">
+    .one_news{
+      border:1px solid black;
+      display:inline-block;
+
+
+      margin-left: 1%;
+      width:calc(94% / 4);
+      height:700px;
+    }
+    .one_img{
+      margin: 10%;
+
+
+      border:1px solid black;
+      width:256px;
+      height:256px;
+
+    }
+    .one_explane{
+      border:1px solid black;
+
+
+    }
+    .region_plant_form{
+      border:1px solid black;
+    }
+    .labels{
+      font-weight: bold;
+
+    }
+
+  </style>
+
+  <script>
+    function onCountryChange() {
+        var countrySelect = document.getElementById("id_country");
+        var citySelect = document.getElementById("id_city");
+        var selectedCountry = countrySelect.options[countrySelect.selectedIndex].value;
+
+        citySelect.disabled = false;
+        for (var i = 0; i < citySelect.options.length; i++) {
+            var cityOption = citySelect.options[i];
+
+            if (cityOption.getAttribute("data-country") === selectedCountry) {
+                cityOption.classList.remove("hidden");
+            } else {
+                cityOption.classList.add("hidden");
+            }
+        }
+    }
+
+      // Add an event listener to the city select element to handle city selection
+
+  </script>
+
+
+
+
+  <h1>news page</h1>
+  <h5>its show images and regions with its diseases and solves</h5>
+  <form method="post" action="">
+      {% csrf_token %}
+      <label for="">Country:</label>
+      <select id="id_country" name="{{ form.country.name }}" onchange="onCountryChange()">
+          <option value="">Select a country</option>
+          {% for country in countries %}
+              <option value="{{ country.pk }}">{{ country.country_name }}</option>
+          {% endfor %}
+      </select>
+
+      <label for="">City:</label>
+      <select id="id_city" name="{{ form.city.name }}" disabled>
+          <option value="">Select a city</option>
+          {% for city in cities %}
+              <option data-country="{{ city.country.pk }}" class="hidden" value="{{ city.pk }}">{{ city.city_name }}</option>
+          {% endfor %}
+      </select>
+
+      <label for="">Plant:</label>
+      <select id="id_plant" name="plant">
+          <option value="">Select plant</option>
+          {% for plant in plants %}
+              <option value="{{ plant.plants_name }}">{{ plant.plants_name }}</option>
+          {% endfor %}
+      </select> <br><br>
+
+
+
+      <button type="submit">Search</button>
+  </form>
+
+{% for new in news %}
+
+    <div class="one_news">
+      <p><label class ="labels" >region : </label> <label>{{new.country}}</label><label> / </label><label>{{new.city}}</label> </p>
+
+      <p><label class ="labels" >history : </label>{{new.time}}</p>
+
+
+      <img class="one_img" src="{{ new.img.url }}" alt="">
+      <p><label class ="labels" >plant : </label> {{new.plant}}</p>
+      <p><label class ="labels" >disease : </label> {{new.case.disease}}</p>
+
+      <div class="one_explane">
+      <p><label class ="labels" >explain : </label> {{new.case.explain}}</p>
+      </div>
+
+      <p><label class ="labels" >treatment : </label> {{new.case.treatment}}</p>
+
+      <p><label class ="labels" >protection : </label> {{new.case.protection}}</p>
+
+    </div>
+{% endfor %}-->

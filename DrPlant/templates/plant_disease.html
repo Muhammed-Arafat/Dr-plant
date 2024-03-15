@@ -1,0 +1,190 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+    .one_img{
+      border:1px solid black;
+      margin: 1%;
+      width: 100%;
+      text-align: center;
+      border-radius: 10px;
+      width:256px;
+      height:256px;
+    }
+    .myfieldclass{
+      color:red;
+
+    }
+    .ttt{
+      display: none;
+    }
+</style>
+
+<script>
+    function onCountryChange() {
+        var countrySelect = document.getElementById("id_country");
+        var citySelect = document.getElementById("id_city");
+        var selectedCountry = countrySelect.options[countrySelect.selectedIndex].value;
+
+        citySelect.disabled = false;
+        for (var i = 0; i < citySelect.options.length; i++) {
+            var cityOption = citySelect.options[i];
+
+            if (cityOption.getAttribute("data-country") === selectedCountry) {
+                cityOption.classList.remove("hidden");
+            } else {
+                cityOption.classList.add("hidden");
+            }
+        }
+    }
+
+    // Add an event listener to the city select element to handle city selection
+
+</script>
+
+<div class="body">
+
+<div class="box_l">
+  <div class="box_2">
+<h1>Pleas take or send the image:</h1>
+
+<div class ="image">
+    <img  src="{{url.url}}">
+</div>
+
+
+
+
+<form method="post" action="" enctype="multipart/form-data">
+
+
+
+
+    {% csrf_token %}
+    <input type="file" name="imageFile" accept=".jpg,.jpeg,.png" />
+
+    <label for="">Country:</label>
+    <select id="id_country" name="{{ form.country.name }}" onchange="onCountryChange()">
+        <option value="">Select a country</option>
+        {% for country in countries %}
+            <option value="{{ country.pk }}">{{ country.country_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="">City:</label>
+    <select id="id_city" name="{{ form.city.name }}" disabled>
+        <option value="">Select a city</option>
+        {% for city in cities %}
+            <option data-country="{{ city.country.pk }}" class="hidden" value="{{ city.pk }}">{{ city.city_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="">Plant:</label>
+    <select id="id_plant" name="plant">
+        <option value="">Select plant</option>
+        {% for plant in plants %}
+            <option value="{{ plant.plants_name }}">{{ plant.plants_name }}</option>
+        {% endfor %}
+    </select>
+
+
+
+
+
+    <br>
+
+
+
+
+
+  <br>
+<button type="submit">Submit</button>
+<br>
+<div class="ttt">
+  {{date}}
+</div>
+</form>
+
+
+</div>
+<div class="result">
+  <p>{{ event }}</p>
+
+{% for new in news|slice:":1"%}
+<p><label class ="labels" >plant : </label> {{new.plant}}</p>
+<p><label class ="labels" >disease : </label> {{new.case.disease}}</p>
+
+<p><label class ="labels" >explain : </label> {{new.case.explain}}</p>
+
+<p><label class ="labels" >treatment : </label> {{new.case.treatment}}</p>
+<p><label class ="labels" >protection : </label> {{new.case.protection}}</p>
+
+{% endfor %}
+<br>
+</div>
+</div>
+</div>
+
+
+{% endblock content %}
+
+
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+<style media="screen">
+  .one_img{
+    border:1px solid black;
+    width:256px;
+    height:256px;
+  }
+  .myfieldclass{
+    color:red;
+
+  }
+</style>
+</head>
+
+  <body>
+
+  <h1>CNN model for plant diseases !!</h1>
+
+   <img  class ="one_img" src="{{ url.url }}"  >
+
+    <form method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      {{imageform}}
+
+
+
+
+      <input type="file" name="imageFile" accept=".jpg,.jpeg,.png" />
+
+
+
+
+    <button type="button" name="button">getback</button>
+    <input type="submit" value="upload to product" />
+    </form>
+
+
+    <p>result:</p>
+    <p>plant name:</p>
+    <p>disease :</p>
+    <p>explane :</p>
+    <p>medecon :</p>
+
+    <br>
+
+  <p>{{ pred }}</p>
+  </body>
+</html>-->

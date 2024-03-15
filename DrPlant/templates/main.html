@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+<!--{% load static %}-->
+{% block content %}
+<div class="body4" style="z-index: 10;">
+  <div class="cont6">
+  <video autoplay muted loop  >
+    <source src="{% static 'videos/vid2.mp4' %}" type="video/mp4">
+  </video>
+</div>
+  <div class="box1">
+
+    <div class="left_box">
+      <div class="box">
+        <p>Welcome to Dr.Plant! Your one-stop solution for diagnosing plant diseases. Simply upload an image of an infected leaf, and our AI-powered system will identify the disease and suggest appropriate treatments. Stay informed about prevalent diseases in your area on our dedicated page. Sign up now and let's save your plants together.</p>
+        <input type="submit" href="" value="learn more">
+      </div>
+      
+      <!---->
+      </div>
+    
+    <div class="right_box">
+      
+      <div class="log_in">
+        <div class="logo1">
+          <img src="{% static 'images/main/343.png' %}" alt="">
+        </div>
+        <p>DR.PLANT</p>
+        <input type="text" onfocus="this.value=''" value="user name">
+        <input type="password" onfocus="this.value=''" value="password">
+        <div class="end">
+          <a href="">Forgot password</a>
+          <input type="submit" name="ok" value="log in">
+        </div>
+    </div>
+  
+  </div>
+</div>
+
+
+
+</div>
+{% endblock content %}

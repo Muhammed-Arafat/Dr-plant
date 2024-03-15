@@ -1,0 +1,185 @@
+body{
+
+}
+.body{
+    margin:0;
+    background-image: url(../images/plant_image/14.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    height: 150vh;
+
+}
+.box_l{
+  height: 100%;
+    padding: 5% 15% 0% 15%;
+}
+
+.box_2 {
+    background-color: #ffffff98;
+    border: 2px solid #004910;
+
+}
+.box_2 h1{
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    font-family: 'Josefin Sans';
+    color: #004910;
+    font-size: 3vw;
+    padding: 1.5%;
+    border-bottom: solid 2px #004910;
+
+}
+.box_2 .image{
+    margin: 1%;
+    width: 100%;
+
+    text-align: center;
+    border-radius: 10px;
+
+
+}
+.box_2 .image img{
+    border-radius: 10%;
+    width:25%;
+    height: 100%;
+
+}
+.box_2 form {
+
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    align-self: center;
+    align-items: center;
+}
+.box_2 form input{
+    margin-bottom: 2%;
+    width: 100%;
+}
+
+.box_2 form input[type=file]::file-selector-button{
+    align-self: center;
+    z-index: 5;
+    border: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: #004910;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 1s;
+  }
+  .box_2 form input[type=file]::file-selector-button:hover{
+    color:#004910;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px inset #024900;
+  }
+  input[type='file'] {
+    color: rgba(0, 0, 0, 0)
+  }
+  .box_2 form label{
+    font-family: 'Kanit', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin-left: 10%;
+    height: 6vh;
+    background-color: #024900;
+    color: #fff;
+    border: solid 1px #fff;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 0px 5px 10px inset #002b02;
+  }
+  .box_2 form select{
+    font-family: 'Kanit', sans-serif;
+    width: 40%;
+    margin-right: 10%;
+    color: #fff;
+    height: 6vh;
+    background-color: #538351;
+    border: 1px solid #fff;
+    border-radius: 0px 10px 10px 0px;
+    box-shadow: 0px 5px 10px inset #0f5c00 ;
+
+  }
+  .box_2 form select label{
+    font-family: 'Kanit', sans-serif;
+  }
+
+  .box_2 form button{
+    font-family: 'Kanit', sans-serif;
+    margin: 1% 0% 1% 0%;
+    align-self: center;
+    border: none;
+    background: #004910;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 1s;
+  }
+  .box_2 form button label{
+    font-family: 'Kanit', sans-serif;
+
+  }
+  .box_2 form button:hover{
+    color:#004910;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px #024900;
+  }
+
+  .result{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    color: #004910;
+    flex-wrap: wrap;
+    font-weight: bold;
+    border: 2px solid #004910;
+  }
+  .result p{
+    border-bottom: 2px solid #004910;
+    width: 100%;
+    padding: 1%;
+    align-self: center;
+    font-size: large;
+  }
+  .result p:first-child{
+    background-color: #004910;
+    color: #fff;
+    font-size: x-large;
+
+  }
+
+
+  @media  (max-width:1200px) and (min-width:992px) {
+
+  }
+  @media (min-width:768px) and (max-width:991px) {
+    .body{
+      height: 130vh;
+    }
+    .box_l{
+      padding-top:20% ;
+    }
+  }
+  @media (max-width:767px) {
+    .box_l{
+      padding: 20% 0px 0px 0px;
+    }
+    .box_2 h1{
+      font-size: 5vw;
+    }
+  }
